@@ -1,0 +1,66 @@
+#include <iostream>
+#include<math.h>
+using namespace std;
+void main()
+{
+int i, j, num, n, m, S[100], S2[100], S3[100] = { 0};
+double S1[100], ave,sum,G;
+double max, min;
+cout << "==============欢迎进入黄金点游戏!=============" << endl;
+cout << "============== 游戏规则 ==============" << endl;
+cout << "=========n个玩家进行游戏=========" << endl;
+cout << "==每人写一个0~100之间的整数 (不包括0或100)==" << endl;
+cout << "===========G=n位玩家平均值avg*0.618==============" << endl;
+cout << "======最高分(1): 提交数字最接近G值的玩家======" << endl;
+cout << "=====最低分(-1):提交数字距离G值最远的玩家=====" << endl;
+cout << "===========:其他所有玩家为0分============" << endl;
+cout << "请输入游戏轮次!" << endl;
+cin >> n;
+cout << "请输入玩家人数:" << endl;
+cin >> m;
+for (i = 1; i <= n; i++)
+{
+sum = 0;
+G = 0;
+cout << "请输入0 到100之间的整数." << endl;
+for (j = 1; j <= m; j++)
+{
+cout <<" 玩家" << j << " :请输入你的整数!" << endl;
+cin >> num;
+S[j] = num;
+sum = sum + S[j];
+}
+ave = sum / num;
+G = ave*0.618;
+cout << "黄金点是G=" << G << endl;
+for (j = 1; j <= m; j++)
+{
+S1[j] = abs(S[j] - G);
+}
+max = min = S1[1];
+for (j = 1; j <= m; j++)
+{
+if (S1[j] >= max)
+max = S1[j];
+else if (S1[j] < min)
+min = S1[j];
+}
+for (j = 1; j <= m; j++)
+{
+if (S1[j] == max)
+S2[j] = -1;
+else if (S1[j] == min)
+S2[j] = 1;
+else S2[j] = 0;
+ 
+}
+for (j = 1; j <= m; j++)
+{
+cout << "本轮分数" << "S2[" << j << "]=" << S2[j] << endl;
+S3[j] = S3[j] + S2[j];
+cout << "总分数 " << "S3[" << j << "]=" << S3[j] << endl;
+}
+}
+system("pause");   //按任意键返回
+}
+好文要顶 关注我 收藏该文    
